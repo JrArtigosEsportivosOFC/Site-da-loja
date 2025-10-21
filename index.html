@@ -3,187 +3,225 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>JR Artigos Esportivos</title>
+  <title>JR - PRO 5 BUMP DRAGON</title>
+
+  <!-- Fontes: Anton (título estilo pesado) e Poppins (preço) -->
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html,body { height: 100%; font-family: Inter, Arial, sans-serif; background: #fff; color:#111; }
-
-    /* Header */
-    .topbar {
-      display:flex; align-items:center; justify-content:space-between;
-      padding:18px 20px; border-bottom:1px solid #eee;
-      background:#fff; position:sticky; top:0; z-index:10;
+    :root{
+      --black:#000;
+      --white:#fff;
     }
-    .brand { display:flex; align-items:center; gap:12px; }
-    .brand img { height:45px; }
-    .icons { display:flex; gap:18px; align-items:center; color:#111; }
-
-    .icons svg {
-      width:22px; height:22px; cursor:pointer;
-      transition:transform .2s ease;
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%;background:var(--white);color:var(--black);font-family:"Poppins",system-ui,Arial,Helvetica,sans-serif}
+    /* Topo */
+    header.header{
+      width:100%;
+      padding:28px 20px 12px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      position:relative;
     }
-    .icons svg:hover { transform:scale(1.1); }
-
-    /* Conteúdo principal */
-    .container { max-width:1100px; margin:28px auto; padding: 0 16px; }
-
-    h1.section-title {
-      text-align:center; font-size:28px; letter-spacing:1px; margin-bottom:18px;
-      font-weight:800;
+    header.header img.logo{
+      height:72px; /* proporcional à imagem do logo enviado */
+      object-fit:contain;
     }
+    /* search + menu icons (no canto direito) */
+    .top-right{
+      position:absolute;
+      right:20px;
+      top:30px;
+      display:flex;
+      gap:18px;
+      align-items:center;
+    }
+    .icon-btn{
+      width:54px;
+      height:54px;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:var(--black);
+      color:var(--white);
+      cursor:pointer;
+    }
+    .icon-btn svg{width:28px;height:28px;stroke:var(--white);fill:none}
 
-    /* Tabs */
-    .tabs {
-      display:flex; gap:14px; justify-content:center; margin-bottom:26px;
-    }
-    .tab-btn {
-      padding:14px 26px; border-radius:10px; border:2px solid #eee;
-      background:#f6f6f6; cursor:pointer; font-weight:700;
-      transition: all .15s ease;
-    }
-    .tab-btn.active {
-      background:#fff; border-color:#111; box-shadow:0 6px 18px rgba(0,0,0,0.05);
-    }
-
-    /* Produtos */
-    .carousel-wrap { position:relative; display:flex; align-items:center; }
-    .carousel {
-      display:flex; gap:18px; overflow:hidden; padding:12px 6px;
-      scroll-behavior:smooth;
-    }
-
-    .card {
-      min-width:280px; max-width:280px; background:#fafafa; border-radius:14px;
-      padding:18px; display:flex; flex-direction:column; align-items:center;
-      text-align:center; box-shadow: 0 6px 18px rgba(0,0,0,0.04);
-      transition: transform .2s ease;
-    }
-    .card:hover { transform:translateY(-4px); }
-
-    .card img {
-      width:100%; height:140px; object-fit:contain; border-radius:8px;
-      background:linear-gradient(180deg,#fff,#f8f8f8);
+    /* linha divisória fina */
+    .divider{
+      height:6px;
+      background:linear-gradient(90deg,var(--black) 0 100%);
+      width:100%;
     }
 
-    .product-title {
-      margin-top:14px; font-weight:800; text-decoration:underline; font-size:16px;
+    main{
+      max-width:900px;
+      margin:28px auto;
+      padding:0 18px 80px;
+      text-align:center;
     }
 
-    /* Botões laterais */
-    .nav-arrow {
-      position: absolute; top:50%; transform:translateY(-50%);
-      background:#fff; border:1px solid #eee; width:44px; height:44px; border-radius:10px;
-      display:flex; align-items:center; justify-content:center; cursor:pointer; z-index:5;
-      box-shadow:0 8px 22px rgba(0,0,0,0.06);
-      transition:background .2s ease;
+    /* textos grandes */
+    .categoria{
+      font-family:"Anton",sans-serif;
+      font-size:82px; /* ajusta pra ficar igual à foto */
+      letter-spacing:1px;
+      text-transform:lowercase;
+      margin-top:22px;
     }
-    .nav-arrow:hover { background:#f0f0f0; }
-    .nav-arrow.left { left:-10px; }
-    .nav-arrow.right { right:-10px; }
-
-    /* Link final */
-    .explore {
-      display:block; text-align:center; margin-top:24px; font-weight:800;
-      text-decoration:underline; letter-spacing:0.6px;
+    .futsal{
+      font-family:"Anton",sans-serif;
+      font-size:98px;
+      margin-top:6px;
+      letter-spacing:2px;
     }
 
-    @media (max-width:880px){
-      .card { min-width:220px; max-width:220px; }
-      .nav-arrow.left { left:2px; }
-      .nav-arrow.right { right:2px; }
+    /* espaço grande antes da imagem */
+    .hero{
+      margin-top:30px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position:relative;
+      padding:40px 0 10px;
     }
 
-    @media (max-width:520px){
-      .tabs { gap:8px; flex-wrap:wrap; }
-      .tab-btn { padding:10px 14px; font-size:14px; }
-      .card { min-width:180px; max-width:180px; }
-      h1.section-title { font-size:22px; }
+    /* seta grande preta esquerda/direita */
+    .arrow{
+      width:120px;
+      height:120px;
+      background:var(--black);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:8px;
+      cursor:pointer;
+    }
+    .arrow.left { margin-right:28px; }
+    .arrow.right { margin-left:28px; }
+
+    .arrow svg { width:48px; height:48px; transform:translateX(0); fill:var(--white) }
+
+    /* imagem do produto */
+    .shoe-wrap{
+      max-width:420px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .shoe{
+      width:420px;
+      height:auto;
+      display:block;
+      object-fit:contain;
+    }
+
+    /* título do produto */
+    .product-title{
+      margin-top:28px;
+      font-family:"Anton",sans-serif;
+      font-size:72px;
+      letter-spacing:1px;
+      text-transform:uppercase;
+      word-spacing:18px;
+    }
+
+    /* preço grande e fino abaixo */
+    .price{
+      margin-top:18px;
+      font-size:60px;
+      font-weight:300;
+      font-family:"Poppins",sans-serif;
+    }
+
+    /* responsividade */
+    @media (max-width:900px){
+      .categoria{font-size:56px}
+      .futsal{font-size:70px}
+      .product-title{font-size:48px}
+      .price{font-size:44px}
+      .arrow{width:90px;height:90px}
+      .arrow svg{width:36px;height:36px}
+      .shoe{width:320px}
+    }
+
+    @media (max-width:420px){
+      header.header img.logo{height:60px}
+      .categoria{font-size:44px}
+      .futsal{font-size:52px}
+      .product-title{font-size:36px}
+      .price{font-size:34px}
+      .arrow{width:74px;height:74px}
+      .shoe{width:240px}
+      .top-right{right:10px;top:18px}
     }
   </style>
 </head>
 <body>
-  <header class="topbar">
-    <div class="brand">
-      <!-- LOGO JR -->
-      <img src="logo-jr.png" alt="JR Artigos Esportivos" />
-    </div>
-    <div class="icons" aria-hidden>
-      <!-- Ícone de pesquisa -->
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
-        <circle cx="11" cy="11" r="8"></circle>
-        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-      </svg>
-      <!-- Ícone de carrinho -->
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart">
-        <circle cx="9" cy="21" r="1"></circle>
-        <circle cx="20" cy="21" r="1"></circle>
-        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-      </svg>
+
+  <!-- header com logo central e ícones à direita -->
+  <header class="header">
+    <img src="logo-jr.png" alt="JR Artigos Esportivos" class="logo">
+    <div class="top-right" aria-hidden="true">
+      <div class="icon-btn" title="Pesquisar" role="button" tabindex="0">
+        <!-- lupa SVG -->
+        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="11" cy="11" r="7"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </div>
+
+      <div class="icon-btn" title="Menu" role="button" tabindex="0">
+        <!-- menu list SVG (3 linhas) -->
+        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+          <path d="M3 6h18M3 12h18M3 18h18"></path>
+        </svg>
+      </div>
     </div>
   </header>
 
-  <main class="container" role="main">
-    <h1 class="section-title">AS MELHORES CHUTEIRAS</h1>
+  <div class="divider" aria-hidden="true"></div>
 
-    <div class="tabs" role="tablist">
-      <button class="tab-btn active" role="tab" data-cat="futsal">FUTSAL</button>
-      <button class="tab-btn" role="tab" data-cat="society">SOCIETY</button>
-      <button class="tab-btn" role="tab" data-cat="campo">CAMPO</button>
+  <main>
+    <div class="categoria">categoria</div>
+    <div class="futsal">FUTSAL</div>
+
+    <div class="hero" aria-hidden="false">
+      <div class="arrow left" id="prevArrow" aria-label="Anterior">
+        <!-- seta esquerda preenchida -->
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+      </div>
+
+      <div class="shoe-wrap">
+        <!-- chuteira: salve a imagem como shoe.png na mesma pasta -->
+        <img src="shoe.png" alt="PRO 5 BUMP DRAGON" class="shoe">
+      </div>
+
+      <div class="arrow right" id="nextArrow" aria-label="Próximo">
+        <!-- seta direita preenchida -->
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8.59 16.59 13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
+      </div>
     </div>
 
-    <section class="carousel-wrap" aria-label="Produtos">
-      <button class="nav-arrow left" id="prevBtn">‹</button>
-      <div class="carousel" id="carousel"></div>
-      <button class="nav-arrow right" id="nextBtn">›</button>
-    </section>
-
-    <a href="#" class="explore">EXPLORE AS CHUTEIRAS</a>
+    <div class="product-title">PRO 5 BUMP DRAGON</div>
+    <div class="price">599.00$</div>
   </main>
 
   <script>
-    const PRODUCTS = {
-      futsal: [
-        {title:"PRO 5 BUMP", img:"https://placehold.co/600x400/ffffff/111111?text=Pro+5+Bump"},
-        {title:"SPEED KICK", img:"https://placehold.co/600x400/ffffff/111111?text=Speed+Kick"},
-        {title:"NITRO FLARE", img:"https://placehold.co/600x400/ffffff/111111?text=Nitro+Flare"},
-      ],
-      society: [
-        {title:"SOC PRO", img:"https://placehold.co/600x400/ffffff/111111?text=Soc+Pro"},
-        {title:"TERRA GRIP", img:"https://placehold.co/600x400/ffffff/111111?text=Terra+Grip"},
-      ],
-      campo: [
-        {title:"FIELD LEGEND", img:"https://placehold.co/600x400/ffffff/111111?text=Field+Legend"},
-        {title:"CLAW 2", img:"https://placehold.co/600x400/ffffff/111111?text=Claw+2"},
-      ],
-    };
-
-    const carousel = document.getElementById('carousel');
-    const tabButtons = document.querySelectorAll('.tab-btn');
-    let activeCat = 'futsal';
-
-    function renderCategory(cat) {
-      activeCat = cat;
-      carousel.innerHTML = '';
-      (PRODUCTS[cat] || []).forEach(p=>{
-        const card = document.createElement('article');
-        card.className = 'card';
-        card.innerHTML = `<img src="${p.img}" alt="${p.title}"><div class="product-title">${p.title}</div>`;
-        carousel.appendChild(card);
-      });
-      carousel.scrollLeft = 0;
-    }
-
-    tabButtons.forEach(btn=>{
-      btn.addEventListener('click', ()=>{
-        tabButtons.forEach(b=>b.classList.remove('active'));
-        btn.classList.add('active');
-        renderCategory(btn.dataset.cat);
-      });
+    // As setas não fazem carrossel — apenas efeito visual.
+    // Se quiser que as setas troquem produtos, me fala que eu adiciono a lista e a lógica.
+    document.getElementById('prevArrow').addEventListener('click', ()=> {
+      // efeito simples: pulse
+      const el = document.getElementById('prevArrow');
+      el.animate([{ transform: 'scale(1)' }, { transform: 'scale(0.93)' }, { transform: 'scale(1)'}], { duration:180 });
     });
-
-    document.getElementById('prevBtn').onclick = ()=>carousel.scrollBy({left:-300,behavior:'smooth'});
-    document.getElementById('nextBtn').onclick = ()=>carousel.scrollBy({left:300,behavior:'smooth'});
-    renderCategory(activeCat);
+    document.getElementById('nextArrow').addEventListener('click', ()=> {
+      const el = document.getElementById('nextArrow');
+      el.animate([{ transform: 'scale(1)' }, { transform: 'scale(0.93)' }, { transform: 'scale(1)'}], { duration:180 });
+    });
   </script>
 </body>
 </html>
