@@ -10,10 +10,17 @@
     a {text-decoration:none; color:inherit;}
 
     /* Header */
-    header {display:flex; justify-content:space-between; align-items:center; padding:1rem 3rem; background:#fff; border-bottom:1px solid #ddd; position:sticky; top:0; z-index:1000;}
+    header {display:flex; justify-content:space-between; align-items:center; padding:1rem 2rem; background:#fff; border-bottom:1px solid #ddd; position:sticky; top:0; z-index:1000;}
     header h1 {font-size:1.8rem; font-weight:bold; color:#000;}
-    nav a {margin-left:2rem; font-weight:500; transition:0.3s;}
-    nav a:hover {color:#e30613;}
+    nav.desktop {display:flex; gap:2rem;}
+    nav.desktop a {font-weight:500; transition:0.3s;}
+    nav.desktop a:hover {color:#e30613;}
+
+    /* Mobile Menu */
+    .menu-toggle {display:none; flex-direction:column; cursor:pointer;}
+    .menu-toggle span {height:3px; width:25px; background:#000; margin:4px 0; transition:0.3s;}
+    nav.mobile {display:none; flex-direction:column; position:absolute; top:70px; right:0; background:#fff; width:200px; border:1px solid #ddd; border-radius:5px; padding:1rem;}
+    nav.mobile a {margin:0.5rem 0; font-weight:500;}
 
     /* Banner */
     .banner {background:url('https://i.ibb.co/HP8K2Jk/futsal-banner.jpg') center/cover no-repeat; height:450px; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; color:#fff;}
@@ -50,12 +57,29 @@
     .support-btn a.whatsapp {background:#25D366;}
     .support-btn a.email {background:#D44638;}
     .support-btn a:hover {transform:scale(1.1);}
+
+    /* Responsive */
+    @media(max-width:768px){
+      nav.desktop {display:none;}
+      .menu-toggle {display:flex;}
+    }
   </style>
 </head>
 <body>
   <header>
     <h1>⚽ Futsal Pro</h1>
-    <nav>
+    <div class="menu-toggle" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <nav class="mobile" id="mobile-menu">
+      <a href="#">Início</a>
+      <a href="#">Modelos</a>
+      <a href="#">Promoções</a>
+      <a href="#">Contato</a>
+    </nav>
+    <nav class="desktop">
       <a href="#">Início</a>
       <a href="#">Modelos</a>
       <a href="#">Promoções</a>
@@ -87,6 +111,12 @@
   </div>
 
   <script>
+    // Menu Mobile
+    function toggleMenu(){
+      const menu = document.getElementById('mobile-menu');
+      menu.style.display = menu.style.display==='flex'?'none':'flex';
+    }
+
     const products = [
       { name: "Nike Lunar Gato II Roxo/Preto", price: 649.99, img: "https://i.ibb.co/4YdL2w5/nike-lunargato.jpg" },
       { name: "Adidas Top Sala", price: 579.90, img: "https://i.ibb.co/mbh2sPt/adidas-top-sala.jpg" },
