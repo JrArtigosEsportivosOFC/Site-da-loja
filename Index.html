@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JR Artigos Esportivos</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #fff;
+      overflow-x: hidden;
+    }
+
+    header {
+      text-align: center;
+      padding: 15px 0;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .menu-top {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      margin: 10px 0;
+      font-size: 18px;
+    }
+
+    .categorias {
+      position: relative;
+      cursor: pointer;
+    }
+
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: 35px;
+      left: 0;
+      background: #f1f1f1;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      border-radius: 10px;
+      width: 200px;
+      max-height: 200px;
+      overflow-y: auto;
+      z-index: 1000;
+    }
+
+    .dropdown.show {
+      display: block;
+    }
+
+    .dropdown ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .dropdown li {
+      padding: 10px;
+      transition: background 0.3s;
+    }
+
+    .dropdown li:hover {
+      background: #ddd;
+    }
+
+    .produtos {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .produto {
+      border: 3px solid #eee;
+      border-radius: 10px;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .produto img {
+      width: 100%;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h2>JR Artigos Esportivos</h2>
+  </header>
+
+  <div class="menu-top">
+    <div class="categorias" onclick="toggleDropdown()">
+      🛒 categorias ▼
+      <div id="dropdown" class="dropdown">
+        <ul>
+          <li>Tênis de Futsal</li>
+          <li>Tênis de Corrida</li>
+          <li>Chuteiras</li>
+          <li>Roupas Esportivas</li>
+        </ul>
+      </div>
+    </div>
+    <i>🔍</i>
+    <i>☰</i>
+  </div>
+
+  <div class="produtos">
+    <div class="produto"><img src="images.jpeg" alt="Tênis Vermelho"></div>
+    <div class="produto"><img src="images (3).jpeg" alt="Tênis Verde"></div>
+    <div class="produto"><img src="download.webp" alt="Tênis Azul"></div>
+    <div class="produto"><img src="download (1).webp" alt="Tênis Branco"></div>
+    <div class="produto"><img src="images (8).jpeg" alt="Tênis Preto"></div>
+    <div class="produto"><img src="images (7).jpeg" alt="Tênis Brasil"></div>
+  </div>
+
+  <script>
+    function toggleDropdown() {
+      const dropdown = document.getElementById("dropdown");
+      dropdown.classList.toggle("show");
+    }
+
+    // Fecha o menu se clicar fora
+    window.onclick = function(event) {
+      if (!event.target.closest('.categorias')) {
+        document.getElementById("dropdown").classList.remove("show");
+      }
+    };
+  </script>
+</body>
+</html>
