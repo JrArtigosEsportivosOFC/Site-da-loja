@@ -36,7 +36,6 @@
   #checkout-btn{width:100%; padding:0.6rem; margin-top:10px; background:#007bff; color:#fff; border:none; border-radius:50px; cursor:pointer; transition:0.3s;}
   #checkout-btn:hover{background:#0056b3;}
   footer{text-align:center;padding:2rem;background:#000;color:#fff;margin-top:3rem;font-size:0.9rem;}
-  /* Modal */
   .modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);justify-content:center;align-items:center;z-index:10000;}
   .modal-content{background:#fff;padding:1.5rem;border-radius:10px;max-width:400px;width:90%;position:relative;}
   .modal-content h3{margin-bottom:1rem;}
@@ -75,7 +74,6 @@
 
 <section class="products" id="product-list"></section>
 
-<!-- Carrinho -->
 <div class="cart" id="cart">
   <h4>🛒 Seu Carrinho</h4>
   <div id="cart-items"></div>
@@ -83,7 +81,6 @@
   <button id="checkout-btn" onclick="finalizarCompra()">Finalizar Compra</button>
 </div>
 
-<!-- Modal Produto -->
 <div class="modal" id="product-modal">
   <div class="modal-content">
     <span class="modal-close" onclick="closeModal()">&times;</span>
@@ -182,8 +179,24 @@ function removeFromCart(index){cart.splice(index,1);updateCart();}
 function finalizarCompra(){
   if(cart.length===0){alert("Seu carrinho está vazio!"); return;}
   let total=cart.reduce((s,i)=>s+i.price,0);
-  alert(`Compra finalizada!\nTotal: R$ ${total.toFixed(2)}\nEm breve você será redirecionado para pagamento via todas formas (Cartão, Boleto, Pix, PayPal).`);
-  cart=[];updateCart();
+  let itens=cart.map(i=>`${i.name} (Nº${i.size}) - R$ ${i.price.toFixed(2)}`).join("\n");
+  
+  // Prompt para escolher forma de pagamento
+  let metodo=prompt(`Pedido:\n${itens}\nTotal: R$ ${total.toFixed(2)}\n\nEscolha o método de pagamento:\n1 - PagSeguro\n2 - PayPal`);
+
+  if(metodo==="1"){
+    // PagSeguro (Pix, Cartão, Boleto)
+    // Substitua o link abaixo pelo link real de checkout PagSeguro
+    window.open("https://pag.ae/7sXyAq6f1","_blank");
+  } else if(metodo==="2"){
+    // PayPal (dinâmico)
+    // Substitua pelo seu link PayPal.Me ajustando o valor
+    window.open("https://www.paypal.com/paypalme/seunome/" + total.toFixed(2),"_blank");
+  } else {
+    alert("Pagamento cancelado!");
+  }
+
+  cart=[]; updateCart();
 }
 
 renderProducts();
