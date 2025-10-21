@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JR Artigos Esportivos</title>
+  <style>
+    * {margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif;}
+    body {background: #f7f7f7; color: #222;}
+    header {
+      background: #fff;
+      color: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 1rem;
+      border-bottom: 2px solid #ddd;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    header img {width: 180px; height: auto; margin-bottom: 10px;}
+    nav a {
+      color: #000;
+      text-decoration: none;
+      margin: 0 1rem;
+      transition: 0.3s;
+      font-weight: 500;
+    }
+    nav a:hover {color: #ff3b30;}
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      padding: 3rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+    .card {
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: 0.3s;
+    }
+    .card:hover {transform: scale(1.05);}
+    .card img {width: 100%; height: 220px; object-fit: cover;}
+    .card-content {padding: 1rem;}
+    .card-content h3 {font-size: 1.1rem; margin-bottom: 0.5rem;}
+    .price {color: #ff3b30; font-size: 1.2rem; font-weight: bold;}
+    button {
+      background: #ff3b30;
+      color: #fff;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: 0.3s;
+      margin-top: 0.5rem;
+    }
+    button:hover {background: #e63229;}
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: #000;
+      color: #fff;
+      margin-top: 3rem;
+    }
+
+    .product-detail {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 2rem;
+      animation: fadeIn 0.4s ease-in-out;
+    }
+    .product-detail img {
+      width: 320px;
+      max-width: 90%;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+    }
+    .product-detail h1 {
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+    }
+    .product-detail .price {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: #ff3b30;
+      font-weight: bold;
+    }
+    .product-detail select {
+      padding: 0.5rem;
+      font-size: 1rem;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      margin-bottom: 1rem;
+    }
+
+    .arrows {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 3rem;
+      margin: 1.5rem 0;
+    }
+    .arrow {
+      cursor: pointer;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background: #ff3b30;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: 0.3s;
+    }
+    .arrow:hover {
+      transform: scale(1.15);
+      background: #e63229;
+    }
+    .arrow svg {
+      width: 22px;
+      height: 22px;
+      fill: #fff;
+    }
+
+    .voltar {
+      margin-top: 1.5rem;
+      color: #000;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+    .voltar:hover {color: #ff3b30;}
+    @keyframes fadeIn {
+      from {opacity: 0; transform: scale(0.95);}
+      to {opacity: 1; transform: scale(1);}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="Screenshot_20251021-125949.Instagram.webp" alt="JR Artigos Esportivos">
+    <nav>
+      <a href="#">Início</a>
+      <a href="#">Modelos</a>
+      <a href="#">Promoções</a>
+      <a href="#">Contato</a>
+    </nav>
+  </header>
+
+  <section class="products" id="product-list"></section>
+
+  <section class="product-detail" id="product-detail">
+    <h2>categoria FUTSAL</h2>
+    <div class="arrows">
+      <div class="arrow" id="prev">
+        <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+      </div>
+      <div class="arrow" id="next">
+        <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>
+      </div>
+    </div>
+    <img id="detail-img" src="" alt="">
+    <h1 id="detail-name"></h1>
+    <p class="price" id="detail-price"></p>
+    <label for="size">Tamanho:</label>
+    <select id="size">
+      <option value="">Selecione</option>
+      <option>37</option>
+      <option>38</option>
+      <option>39</option>
+      <option>40</option>
+      <option>41</option>
+      <option>42</option>
+      <option>43</option>
+    </select><br>
+    <button onclick="confirmarCompra()">Finalizar compra via WhatsApp</button>
+    <a href="#" class="voltar" onclick="voltarLoja()">⬅ Voltar à loja</a>
+  </section>
+
+  <footer>
+    <p>© 2025 JR Artigos Esportivos. Todos os direitos reservados.</p>
+  </footer>
+
+  <script>
+    const products = [
+      { name: "PRO 5 BUMP DRAGON", price: 599.00, img: "images.jpeg" },
+      { name: "Tênis Brasil", price: 449.99, img: "images (7).jpeg" },
+      { name: "Tênis Azul", price: 419.99, img: "download.webp" },
+      { name: "Tênis Preto", price: 379.99, img: "images (8).jpeg" },
+      { name: "Tênis Verde", price: 329.99, img: "images (3).jpeg" },
+      { name: "Tênis Branco", price: 399.99, img: "download (1).webp" }
+    ];
+
+    const list = document.getElementById("product-list");
+    const detail = document.getElementById("product-detail");
+    let currentIndex = 0;
+
+    function renderProducts() {
+      products.forEach((p, i) => {
+        const card = document.createElement("div");
+        card.classList.add("card");
+        card.innerHTML = `
+          <img src="${p.img}" alt="${p.name}" onerror="this.src='https://via.placeholder.com/250x220?text=Sem+Imagem'">
+          <div class="card-content">
+            <h3>${p.name}</h3>
+            <p class="price">R$ ${p.price.toFixed(2)}</p>
+            <button onclick="mostrarDetalhes(${i})">Comprar</button>
+          </div>
+        `;
+        list.appendChild(card);
+      });
+    }
+
+    function mostrarDetalhes(index) {
+      currentIndex = index;
+      const produto = products[index];
+      document.getElementById("detail-img").src = produto.img;
+      document.getElementById("detail-name").textContent = produto.name;
+      document.getElementById("detail-price").textContent = `R$ ${produto.price.toFixed(2)}`;
+      document.querySelector(".products").style.display = "none";
+      detail.style.display = "flex";
+    }
+
+    function voltarLoja() {
+      detail.style.display = "none";
+      document.querySelector(".products").style.display = "grid";
+    }
+
+    function confirmarCompra() {
+      const size = document.getElementById("size").value;
+      if (!size) {
+        alert("Selecione um tamanho antes de finalizar a compra!");
+        return;
+      }
+      const produto = products[currentIndex];
+      const phone = "5551998854935";
+      const msg = `Olá! Quero comprar o produto *${produto.name}* (Tamanho ${size}) - Preço: R$ ${produto.price.toFixed(2)}`;
+      const url = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
+      window.open(url, "_blank");
+    }
+
+    document.getElementById("prev").addEventListener("click", () => {
+      currentIndex = (currentIndex - 1 + products.length) % products.length;
+      mostrarDetalhes(currentIndex);
+    });
+    document.getElementById("next").addEventListener("click", () => {
+      currentIndex = (currentIndex + 1) % products.length;
+      mostrarDetalhes(currentIndex);
+    });
+
+    renderProducts();
+  </script>
+</body>
+</html>
