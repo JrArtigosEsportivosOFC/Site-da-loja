@@ -8,14 +8,23 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html,body { height: 100%; font-family: Inter, Arial, sans-serif; background: #fff; color:#111; }
 
+    /* Header */
     .topbar {
       display:flex; align-items:center; justify-content:space-between;
       padding:18px 20px; border-bottom:1px solid #eee;
+      background:#fff; position:sticky; top:0; z-index:10;
     }
-    .brand { display:flex; align-items:center; gap:12px; font-weight:700; font-size:20px; }
-    .brand img { height:40px; }
-    .icons { display:flex; gap:14px; align-items:center; color:#222; }
+    .brand { display:flex; align-items:center; gap:12px; }
+    .brand img { height:45px; }
+    .icons { display:flex; gap:18px; align-items:center; color:#111; }
 
+    .icons svg {
+      width:22px; height:22px; cursor:pointer;
+      transition:transform .2s ease;
+    }
+    .icons svg:hover { transform:scale(1.1); }
+
+    /* Conteúdo principal */
     .container { max-width:1100px; margin:28px auto; padding: 0 16px; }
 
     h1.section-title {
@@ -23,6 +32,7 @@
       font-weight:800;
     }
 
+    /* Tabs */
     .tabs {
       display:flex; gap:14px; justify-content:center; margin-bottom:26px;
     }
@@ -35,6 +45,7 @@
       background:#fff; border-color:#111; box-shadow:0 6px 18px rgba(0,0,0,0.05);
     }
 
+    /* Produtos */
     .carousel-wrap { position:relative; display:flex; align-items:center; }
     .carousel {
       display:flex; gap:18px; overflow:hidden; padding:12px 6px;
@@ -45,7 +56,9 @@
       min-width:280px; max-width:280px; background:#fafafa; border-radius:14px;
       padding:18px; display:flex; flex-direction:column; align-items:center;
       text-align:center; box-shadow: 0 6px 18px rgba(0,0,0,0.04);
+      transition: transform .2s ease;
     }
+    .card:hover { transform:translateY(-4px); }
 
     .card img {
       width:100%; height:140px; object-fit:contain; border-radius:8px;
@@ -56,15 +69,19 @@
       margin-top:14px; font-weight:800; text-decoration:underline; font-size:16px;
     }
 
+    /* Botões laterais */
     .nav-arrow {
       position: absolute; top:50%; transform:translateY(-50%);
       background:#fff; border:1px solid #eee; width:44px; height:44px; border-radius:10px;
       display:flex; align-items:center; justify-content:center; cursor:pointer; z-index:5;
       box-shadow:0 8px 22px rgba(0,0,0,0.06);
+      transition:background .2s ease;
     }
+    .nav-arrow:hover { background:#f0f0f0; }
     .nav-arrow.left { left:-10px; }
     .nav-arrow.right { right:-10px; }
 
+    /* Link final */
     .explore {
       display:block; text-align:center; margin-top:24px; font-weight:800;
       text-decoration:underline; letter-spacing:0.6px;
@@ -87,12 +104,21 @@
 <body>
   <header class="topbar">
     <div class="brand">
-      <!-- Substituído pelo logo da JR -->
+      <!-- LOGO JR -->
       <img src="logo-jr.png" alt="JR Artigos Esportivos" />
     </div>
     <div class="icons" aria-hidden>
-      <span>🔍</span>
-      <span>🛒</span>
+      <!-- Ícone de pesquisa -->
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+      <!-- Ícone de carrinho -->
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart">
+        <circle cx="9" cy="21" r="1"></circle>
+        <circle cx="20" cy="21" r="1"></circle>
+        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+      </svg>
     </div>
   </header>
 
