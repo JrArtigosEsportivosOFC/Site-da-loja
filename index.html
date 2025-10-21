@@ -1,205 +1,285 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JrArtigosEsportivos | Top Chuteiras 2025</title>
-<style>
-  *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
-  body{background:#f5f5f5;color:#222;}
-  header{background:#000;color:#fff;display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;position:sticky;top:0;z-index:1000;}
-  header h1{font-size:1.8rem;font-weight:bold;}
-  nav.desktop a{color:#fff;margin:0 1rem;font-weight:500;transition:0.3s;}
-  nav.desktop a:hover{color:#e30613;}
-  .menu-toggle{display:none;flex-direction:column;cursor:pointer;}
-  .menu-toggle span{height:3px;width:25px;background:#fff;margin:4px 0;}
-  nav.mobile{display:none;flex-direction:column;position:absolute;top:70px;right:0;background:#000;width:200px;padding:1rem;border-radius:5px;}
-  nav.mobile a{margin:0.5rem 0;color:#fff;font-weight:500;}
-  .banner{background:url('https://i.ibb.co/HP8K2Jk/futsal-banner.jpg') center/cover no-repeat;height:450px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;color:#fff;}
-  .banner h2{font-size:3rem;font-weight:bold;text-shadow:2px 2px 6px rgba(0,0,0,0.6);}
-  .banner p{font-size:1.2rem;text-shadow:1px 1px 4px rgba(0,0,0,0.6);margin:1rem 0;}
-  .banner button{padding:0.8rem 2rem;background:#e30613;border:none;color:#fff;border-radius:50px;cursor:pointer;transition:0.3s;}
-  .banner button:hover{background:#b3050f;}
-  .products{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem;padding:3rem;max-width:1200px;margin:auto;}
-  .card{background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,0.08);transition:0.3s;cursor:pointer;}
-  .card:hover{transform:translateY(-5px);box-shadow:0 4px 20px rgba(0,0,0,0.12);}
-  .card img{width:100%;height:220px;object-fit:cover;}
-  .card-content{padding:1rem;}
-  .card-content h3{font-size:1.1rem;margin-bottom:0.5rem;font-weight:600;}
-  .card-content p{font-size:0.9rem;color:#555;margin-bottom:0.5rem;}
-  .price{font-size:1.2rem;font-weight:bold;color:#e30613;}
-  .cart{position:fixed;top:20%;right:0;width:320px;max-height:450px;overflow-y:auto;background:#fff;box-shadow:-5px 5px 20px rgba(0,0,0,0.2);padding:1rem;display:none;border-radius:10px 0 0 10px;z-index:999;}
-  .cart h4{text-align:center;margin-bottom:1rem;}
-  .cart-item{display:flex;justify-content:space-between;align-items:center;margin-bottom:0.5rem;border-bottom:1px solid #eee;padding-bottom:4px;}
-  .cart-item button{background:none;border:none;color:red;font-size:1rem;cursor:pointer;}
-  .cart-total{text-align:right;font-weight:bold;margin-top:1rem;}
-  #checkout-btn{width:100%; padding:0.6rem; margin-top:10px; background:#007bff; color:#fff; border:none; border-radius:50px; cursor:pointer; transition:0.3s;}
-  #checkout-btn:hover{background:#0056b3;}
-  footer{text-align:center;padding:2rem;background:#000;color:#fff;margin-top:3rem;font-size:0.9rem;}
-  .modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);justify-content:center;align-items:center;z-index:10000;}
-  .modal-content{background:#fff;padding:1.5rem;border-radius:10px;max-width:400px;width:90%;position:relative;}
-  .modal-content h3{margin-bottom:1rem;}
-  .modal-content p{margin-bottom:0.5rem;}
-  .modal-content select,input{width:100%;padding:0.5rem;margin-bottom:0.5rem;border-radius:5px;border:1px solid #ccc;}
-  .modal-close{position:absolute;top:10px;right:15px;font-size:1.5rem;font-weight:bold;cursor:pointer;color:#333;}
-  .modal button{background:#e30613;color:#fff;border:none;padding:0.6rem;width:100%;border-radius:50px;cursor:pointer;margin-top:5px;}
-  .modal button:hover{background:#b3050f;}
-  @media(max-width:768px){nav.desktop{display:none;}.menu-toggle{display:flex;}}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JrArtigosEsportivos</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #f5f5f5;
+    }
+
+    header {
+      background-color: #1a1a1a;
+      color: white;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+
+    header nav a {
+      color: white;
+      margin-left: 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .product-card {
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      padding: 15px;
+      text-align: center;
+      transition: transform 0.2s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .product-card h3 {
+      margin: 10px 0 5px 0;
+    }
+
+    .product-card p {
+      margin: 5px 0;
+      font-weight: bold;
+      color: #007bff;
+    }
+
+    .product-card select {
+      margin: 10px 0;
+      padding: 5px;
+    }
+
+    .product-card button {
+      padding: 10px 15px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .product-card button:hover {
+      background-color: #0056b3;
+    }
+
+    #cart {
+      position: fixed;
+      top: 70px;
+      right: 20px;
+      width: 300px;
+      max-height: 80vh;
+      overflow-y: auto;
+      background-color: white;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 15px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+
+    #cart h2 {
+      margin-top: 0;
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .cart-item button {
+      background-color: red;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 2px 5px;
+      cursor: pointer;
+    }
+
+    #checkout {
+      margin-top: 10px;
+      padding: 10px;
+      background-color: green;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    #checkout:hover {
+      background-color: darkgreen;
+    }
+
+    footer {
+      background-color: #1a1a1a;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 20px;
+    }
+
+    #support-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: orange;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      font-size: 18px;
+      cursor: pointer;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+
+  </style>
 </head>
 <body>
 
-<header>
-  <h1>JrArtigosEsportivos</h1>
-  <div class="menu-toggle" onclick="toggleMenu()"><span></span><span></span><span></span></div>
-  <nav class="mobile" id="mobile-menu">
-    <a href="#">Início</a>
-    <a href="#">Modelos</a>
-    <a href="#">Promoções</a>
-    <a href="#">Contato</a>
-  </nav>
-  <nav class="desktop">
-    <a href="#">Início</a>
-    <a href="#">Modelos</a>
-    <a href="#">Promoções</a>
-    <a href="#">Contato</a>
-  </nav>
-</header>
+  <header>
+    <h1>JrArtigosEsportivos</h1>
+    <nav>
+      <a href="#products">Produtos</a>
+      <a href="#cart">Carrinho</a>
+      <a href="#footer">Contato</a>
+    </nav>
+  </header>
 
-<section class="banner">
-  <h2>Domine as Quadras</h2>
-  <p>As melhores chuteiras de futsal 2025 para você jogar com estilo</p>
-  <button onclick="window.scrollTo({top:document.querySelector('.products').offsetTop, behavior:'smooth'})">Compre Agora</button>
-</section>
+  <main>
+    <section class="products" id="products">
+      <!-- Produtos -->
+      <div class="product-card">
+        <img src="https://i.imgur.com/1FvPqW0.jpg" alt="Chuteira Nike Mercurial">
+        <h3>Nike Mercurial</h3>
+        <p>R$ 399,90</p>
+        <select>
+          <option value="38">38</option>
+          <option value="39">39</option>
+          <option value="40">40</option>
+          <option value="41">41</option>
+        </select>
+        <button onclick="addToCart('Nike Mercurial', 399.90)">Adicionar ao Carrinho</button>
+      </div>
 
-<section class="products" id="product-list"></section>
+      <div class="product-card">
+        <img src="https://i.imgur.com/ltxX9Dx.jpg" alt="Chuteira Adidas Predator">
+        <h3>Adidas Predator</h3>
+        <p>R$ 449,90</p>
+        <select>
+          <option value="38">38</option>
+          <option value="39">39</option>
+          <option value="40">40</option>
+          <option value="41">41</option>
+        </select>
+        <button onclick="addToCart('Adidas Predator', 449.90)">Adicionar ao Carrinho</button>
+      </div>
 
-<div class="cart" id="cart">
-  <h4>🛒 Seu Carrinho</h4>
-  <div id="cart-items"></div>
-  <div class="cart-total" id="cart-total">Total: R$ 0.00</div>
-  <button id="checkout-btn" onclick="finalizarCompra()">Finalizar Compra</button>
-</div>
+      <div class="product-card">
+        <img src="https://i.imgur.com/3c3iJQo.jpg" alt="Chuteira Puma Future">
+        <h3>Puma Future</h3>
+        <p>R$ 429,90</p>
+        <select>
+          <option value="38">38</option>
+          <option value="39">39</option>
+          <option value="40">40</option>
+          <option value="41">41</option>
+        </select>
+        <button onclick="addToCart('Puma Future', 429.90)">Adicionar ao Carrinho</button>
+      </div>
+      
+      <!-- Adicione mais produtos seguindo o mesmo padrão -->
+    </section>
+  </main>
 
-<div class="modal" id="product-modal">
-  <div class="modal-content">
-    <span class="modal-close" onclick="closeModal()">&times;</span>
-    <h3 id="modal-name"></h3>
-    <img id="modal-img" src="" alt="" style="width:100%;height:200px;object-fit:cover;margin-bottom:10px;">
-    <p id="modal-desc"></p>
-    <label>Tamanho:</label>
-    <select id="modal-size">
-      <option>34</option><option>35</option><option>36</option><option>37</option>
-      <option>38</option><option>39</option><option>40</option><option>41</option>
-      <option>42</option><option>43</option>
-    </select>
-    <label>Quantidade:</label>
-    <input type="number" id="modal-quantity" value="1" min="1">
-    <button onclick="addFromModal()">Adicionar ao Carrinho</button>
+  <div id="cart">
+    <h2>Carrinho</h2>
+    <div id="cart-items"></div>
+    <p>Total: R$ <span id="total">0.00</span></p>
+    <button id="checkout" onclick="checkout()">Finalizar Compra</button>
   </div>
-</div>
 
-<footer>
-  © 2025 JrArtigosEsportivos. Todos os direitos reservados.
-</footer>
+  <button id="support-btn" onclick="support()">Suporte</button>
 
-<script>
-function toggleMenu(){const m=document.getElementById('mobile-menu');m.style.display=m.style.display==='flex'?'none':'flex';}
+  <footer id="footer">
+    <p>JrArtigosEsportivos &copy; 2025 | Contato: suporte@jrartigosesportivos.com</p>
+    <p>Formas de pagamento: <img src="https://i.imgur.com/2AkKq4D.png" alt="Cartões" width="150"></p>
+  </footer>
 
-const products=[
-  {name:"Nike Lunar Gato II Roxo/Preto",price:649.99,img:"https://i.ibb.co/4YdL2w5/nike-lunargato.jpg",desc:"Chuteira oficial indoor, conforto e performance máxima."},
-  {name:"Adidas Top Sala",price:579.90,img:"https://i.ibb.co/mbh2sPt/adidas-top-sala.jpg",desc:"Design profissional com ótima aderência."},
-  {name:"Puma Future Z 4.4 IT",price:499.99,img:"https://i.ibb.co/4Y9smHc/puma-future-z.jpg",desc:"Leve e ágil, perfeita para dribles rápidos."},
-  {name:"Nike React Gato",price:699.99,img:"https://i.ibb.co/Yh1r9Kn/nike-react-gato.jpg",desc:"Tecnologia React para maior conforto."},
-  {name:"Umbro Chaleira Pro 3",price:429.99,img:"https://i.ibb.co/tsVb7G3/umbro-chaleira.jpg",desc:"Durabilidade e controle da bola."},
-  {name:"Adidas Copa Sense Sala",price:599.99,img:"https://i.ibb.co/HCp28pF/adidas-copa.jpg",desc:"Conforto superior e design moderno."},
-  {name:"Mizuno Morelia Indoor",price:689.90,img:"https://i.ibb.co/xqLZ3Vt/mizuno-morelia.jpg",desc:"Excelente estabilidade e leveza."},
-  {name:"Penalty Bravo XXI",price:349.99,img:"https://i.ibb.co/fdXH7Xq/penalty-bravo.jpg",desc:"Boa opção custo-benefício."},
-  {name:"Nike Tiempo Legend 10 IC",price:719.99,img:"https://i.ibb.co/TwYx9mr/nike-tiempo.jpg",desc:"Alta performance em quadra."},
-  {name:"Adidas X Speedflow Sala",price:649.99,img:"https://i.ibb.co/SvR6skH/adidas-x.jpg",desc:"Velocidade e precisão no chute."},
-  {name:"Puma Ultra Match IT",price:559.99,img:"https://i.ibb.co/JkFzGkN/puma-ultra.jpg",desc:"Ideal para jogadores rápidos."},
-  {name:"Nike Streetgato",price:489.99,img:"https://i.ibb.co/hY5xQq1/nike-streetgato.jpg",desc:"Estilo urbano e desempenho."},
-  {name:"Umbro Velocita Alchemist",price:499.90,img:"https://i.ibb.co/4TB2PfH/umbro-velocita.jpg",desc:"Design agressivo e conforto."},
-  {name:"Adidas Predator Accuracy IC",price:729.99,img:"https://i.ibb.co/tX2D0rT/adidas-predator.jpg",desc:"Controle absoluto da bola."},
-  {name:"Nike Lunargato White Edition",price:659.99,img:"https://i.ibb.co/DkYfM5s/nike-lunargato-white.jpg",desc:"Edição limitada, conforto premium."}
-];
+  <script>
+    let cart = [];
 
-let cart=[];
-let selectedProduct=null;
+    function addToCart(name, price) {
+      const item = { name, price };
+      cart.push(item);
+      renderCart();
+    }
 
-function renderProducts(){
-  const list=document.getElementById("product-list");
-  products.forEach((p,i)=>{
-    const card=document.createElement("div");
-    card.classList.add("card");
-    card.innerHTML=`<img src="${p.img}" alt="${p.name}" onerror="this.src='https://via.placeholder.com/250x220?text=Indisponível'">
-      <div class="card-content">
-        <h3>${p.name}</h3>
-        <p class="price">R$ ${p.price.toFixed(2)}</p>
-      </div>`;
-    card.onclick=()=>openModal(i);
-    list.appendChild(card);
-  });
-}
+    function renderCart() {
+      const cartItems = document.getElementById('cart-items');
+      const totalEl = document.getElementById('total');
+      cartItems.innerHTML = '';
+      let total = 0;
 
-function openModal(index){
-  selectedProduct=products[index];
-  document.getElementById("modal-name").innerText=selectedProduct.name;
-  document.getElementById("modal-img").src=selectedProduct.img;
-  document.getElementById("modal-desc").innerText=selectedProduct.desc;
-  document.getElementById("modal-quantity").value=1;
-  document.getElementById("product-modal").style.display="flex";
-}
+      cart.forEach((item, index) => {
+        total += item.price;
+        const div = document.createElement('div');
+        div.className = 'cart-item';
+        div.innerHTML = \`
+          <span>\${item.name} - R$ \${item.price.toFixed(2)}</span>
+          <button onclick="removeItem(\${index})">X</button>
+        \`;
+        cartItems.appendChild(div);
+      });
 
-function closeModal(){document.getElementById("product-modal").style.display="none";}
+      totalEl.textContent = total.toFixed(2);
+    }
 
-function addFromModal(){
-  const qty=parseInt(document.getElementById("modal-quantity").value);
-  const size=document.getElementById("modal-size").value;
-  for(let i=0;i<qty;i++){cart.push({...selectedProduct,size:size});}
-  closeModal();
-  updateCart();
-}
+    function removeItem(index) {
+      cart.splice(index, 1);
+      renderCart();
+    }
 
-function updateCart(){
-  const cartItems=document.getElementById("cart-items"); cartItems.innerHTML=""; let total=0;
-  cart.forEach((item,index)=>{
-    total+=item.price;
-    const div=document.createElement("div");
-    div.classList.add("cart-item");
-    div.innerHTML=`<span>${item.name} (Nº${item.size})</span><span>R$ ${item.price.toFixed(2)}</span> <button onclick="removeFromCart(${index})">❌</button>`;
-    cartItems.appendChild(div);
-  });
-  document.getElementById("cart-total").innerText=`Total: R$ ${total.toFixed(2)}`;
-  document.getElementById("cart").style.display=cart.length?"block":"none";
-}
+    function checkout() {
+      if(cart.length === 0) {
+        alert('O carrinho está vazio!');
+        return;
+      }
+      alert('Compra finalizada! Total: R$ ' + cart.reduce((sum, item) => sum + item.price, 0).toFixed(2));
+      cart = [];
+      renderCart();
+    }
 
-function removeFromCart(index){cart.splice(index,1);updateCart();}
+    function support() {
+      alert('Entre em contato pelo e-mail: suporte@jrartigosesportivos.com');
+    }
 
-function finalizarCompra(){
-  if(cart.length===0){alert("Seu carrinho está vazio!"); return;}
-  let total=cart.reduce((s,i)=>s+i.price,0);
-  let itens=cart.map(i=>`${i.name} (Nº${i.size}) - R$ ${i.price.toFixed(2)}`).join("\n");
-  
-  // Prompt para escolher forma de pagamento
-  let metodo=prompt(`Pedido:\n${itens}\nTotal: R$ ${total.toFixed(2)}\n\nEscolha o método de pagamento:\n1 - PagSeguro\n2 - PayPal`);
+  </script>
 
-  if(metodo==="1"){
-    // PagSeguro (Pix, Cartão, Boleto)
-    // Substitua o link abaixo pelo link real de checkout PagSeguro
-    window.open("https://pag.ae/7sXyAq6f1","_blank");
-  } else if(metodo==="2"){
-    // PayPal (dinâmico)
-    // Substitua pelo seu link PayPal.Me ajustando o valor
-    window.open("https://www.paypal.com/paypalme/seunome/" + total.toFixed(2),"_blank");
-  } else {
-    alert("Pagamento cancelado!");
-  }
-
-  cart=[]; updateCart();
-}
-
-renderProducts();
-</script>
 </body>
 </html>
